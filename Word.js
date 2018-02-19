@@ -12,10 +12,10 @@ function Word(){
     }
   };
 
-  this.representWord = function (){ {
+  this.representWord = function (){
     //returns the placeholder representing word
     var repWord = "";
-    for(var a=0; a<letters.length; a++){
+    for(var a=0; a<this.letters.length; a++){
       repWord += this.letters[i].displayCharacter();
     }
     return repWord;
