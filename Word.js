@@ -4,6 +4,7 @@ var Letter = require("./Letter.js");
 function Word(){
   //variables
   this.letters = []; //array of new Letter objects
+  this.noLetterLeft = false;
 
   //functions
   this.setLetters = function(word){
@@ -14,15 +15,27 @@ function Word(){
 
   this.representWord = function (){
     //returns the placeholder representing word
+    var state = true;
     var repWord = "";
     for(var a=0; a<this.letters.length; a++){
-      repWord += this.letters[i].displayCharacter();
+      if(this.letters[a].displayCharacter() === "_"){
+        state = false;
+      }
+      repWord += this.letters[a].displayCharacter();
     }
+    this.noLetterLeft = state;
     return repWord;
   };
 
-  this.getGuess = function(character){
-    this.letters.checkCharacter(character);
+  this.checkGuess = function(character){
+    for(var a=0; a<this.letter.length;a++){
+      if( this.letters[a].checkCharacter(character)){
+        console.log("CORRECT!");
+        return true;
+      } 
+    }
+      console.log("WRONG");
+      return false;
   };
 }
 
