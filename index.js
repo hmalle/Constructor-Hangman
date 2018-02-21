@@ -30,14 +30,23 @@ var promptUser = function(){
     if( ! letter.match(/[a-z]/i) ){
       console.log("Please enter a valid alphabet");
       promptUser();
-    }else{
+    }else{ //if its an alphabet
       if(newWord.checkGuess(letter)){
-        if(newWord.noLetterLeft){
-          console.log("You Win");
+        //check if all letters have been guessed!
+        newWord.representWord(); //trigger nolettersleft;
+        if(newWord.noLetterLeft){ 
+          console.log("You Win"); 
+        }else{
+          promptUser(); 
         }
-      }else{
+      }else{ //wrong guess
+        guessesLeft--;
         console.log("Guesses left: "+ guessesLeft);
-        promptUser();
+        if( guessesLeft> 0){
+          promptUser();
+        }else{
+          console.log("Game Over");
+        }
       }
     }
   });

@@ -4,13 +4,17 @@ var Letter = require("./Letter.js");
 function Word(){
   //variables
   this.letters = []; //array of new Letter objects
-  this.noLetterLeft = false;
+  this.noLetterLeft = false; //to check of all letters have been guessed
 
   //functions
   this.setLetters = function(word){
     for( var a=0;a<word.length; a++){
-      this.letters.push(new Letter(word.charAt(a)));
+      var ch = word.charAt(a).toLowerCase();
+      var newLetter = new Letter(ch);
+      if(ch==" "){ newLetter.checkCharacter(" "); }//ignore spaces between words!
+      this.letters.push(newLetter);
     }
+    console.log("The letters array: "+ JSON.stringify(this.letters));
   };
 
   this.representWord = function (){
@@ -28,14 +32,17 @@ function Word(){
   };
 
   this.checkGuess = function(character){
-    for(var a=0; a<this.letter.length;a++){
+    var matchFound = false;
+    for(var a=0; a<this.letters.length;a++){
       if( this.letters[a].checkCharacter(character)){
-        console.log("CORRECT!");
-        return true;
-      } 
+        matchFound= true; } 
     }
+    if(matchFound){
+      console.log("CORRECT!");
+    }else{
       console.log("WRONG");
-      return false;
+    }
+    return matchFound;
   };
 }
 
