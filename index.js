@@ -12,7 +12,6 @@ var getWord = function(){
   var index = Math.floor(Math.random()*wordsList.length) ;
   randomWord = wordsList[index];
   newWord = new Word();
-  console.log(randomWord); //TODO Delete this line
   newWord.setLetters(randomWord);
   return newWord;
 }
@@ -36,6 +35,7 @@ var promptUser = function(){
         newWord.representWord(); //trigger nolettersleft;
         if(newWord.noLetterLeft){ 
           console.log("You Win"); 
+          playGame();
         }else{
           promptUser(); 
         }
@@ -46,11 +46,37 @@ var promptUser = function(){
           promptUser();
         }else{
           console.log("Game Over");
+          playGame();
         }
       }
     }
   });
 }
 
+/*
+function playGame(){
+  var question = [{
+    name:"opt",
+    type:"checkbox",
+    message:"Do you want to play again?",
+    choices:["play","quit"]
+  }];
+  inquirer.prompt(question).then(function(answer){
+    console.log(JSON.stringify(answer));
+    switch(answer.opt){
+      case "play":
+        newWord = getWord();
+        promptUser();
+        break;
+      case "quit":
+        console.log("Quitting the game");
+        break;
+    }
+  });
+}
+
+playGame();
+*/
 newWord = getWord();
 promptUser();
+

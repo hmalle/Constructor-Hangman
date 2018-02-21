@@ -14,7 +14,6 @@ function Word(){
       if(ch==" "){ newLetter.checkCharacter(" "); }//ignore spaces between words!
       this.letters.push(newLetter);
     }
-    console.log("The letters array: "+ JSON.stringify(this.letters));
   };
 
   this.representWord = function (){
